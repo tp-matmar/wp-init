@@ -194,9 +194,3 @@ echo -e "\n${GREEN}[!] All done${NC}"
 
 #TODO
 #Setup for https
-#maybe add var input prompt like in 
-
-
-# https://gist.github.com/nginx-gists/bdc7da70b124c4f3e472970c7826cccc
-# https://github.com/bhavin192/wpinstall/blob/master/wpinstall.sh
-# https://github.com/hestiacp/hestiacp/blob/main/install/hst-install-debian.sh
