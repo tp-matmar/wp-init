@@ -1,4 +1,6 @@
 #!/bin/bash
+# Working with debiam:10-slim docker container
+# sudo docker run --rm --name debian-wp-init-`cat /dev/urandom | tr -dc '0-9' | fold -w 5 | head -n1` -v `pwd`:/mnt -e LANG=en_US.UTF-8 -p 80:80 -it debian:10-slim /bin/bash -c "apt update -y && apt upgrade -y && apt install vim -y && clear; echo 'Your host directory is mounted here in /mnt'; /bin/bash" -l
 
 ######  VARS
 # change these
@@ -45,11 +47,11 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-#check locale
-#somehow?
-echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
-apt install locales -y &>/dev/null
-locale-gen &>/dev/null
+#spinner / loading is not recignizing given characters
+#check locale somehow?
+#echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+#apt install locales -y &>/dev/null
+#locale-gen &>/dev/null
 
 ###### VARIABLE RANDOMIZER
 for i in $rootpass $dbname $dbuser $userpass $WPdomain; do
@@ -221,6 +223,7 @@ if [ -d /var/www/$WPdomain ]; then
 fi
 mkdir -p /var/www/$WPdomain
 cd /var/www/$WPdomain
+# change it with curl and ditch wget ?
 wget -q -O - "http://wordpress.org/latest.tar.gz" | tar -xzf -
 chown www-data: -R /var/www/$WPdomain/wordpress/
 cd wordpress
